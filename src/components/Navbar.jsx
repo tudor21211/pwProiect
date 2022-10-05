@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     height: 60px;
+    background-color:#F9F9F9 ;
 `;
 
 const Wrapper = styled.div`
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
     display:flex;
     align-items: center;
     justify-content: space-between;
+    
 `;
 const Left=styled.div`
     flex : 1;
@@ -40,6 +42,8 @@ display: flex;
 align-items: center;
 margin-left: 25px;
 padding: 5px;
+background-color: "#F9F9F9";
+
 `
 
 const Logo = styled.h1`

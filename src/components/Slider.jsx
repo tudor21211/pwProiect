@@ -1,6 +1,6 @@
 import {ArrowLeftSharp,ArrowRightSharp } from '@material-ui/icons'
-
-import React from 'react'
+import {sliderItems} from "../data"
+import React, {useState} from "react";
 
 import styled from 'styled-components'
 
@@ -12,6 +12,7 @@ const Container = styled.div`
     display:flex;
     background-color: white ;
     position: relative;
+    overflow: hidden;
     
 `
 const Arrow = styled.div`
@@ -30,17 +31,21 @@ const Arrow = styled.div`
     margin:auto;
     cursor:pointer;
     opacity: 0.6 ;
+    z-index:2;
 `;
 
 const Wrapper = styled.div`
     height: 100%;
     display: flex;
+    transform: translateX(${props=>props.slideIndex* -100}vw) ;
+    transition: all 0.8s ease-out;
 `
 const Slide = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center ;
+    background-color:#F9F9F9 ;
 `;
 
 const ImageContainer = styled.div`
@@ -78,45 +83,40 @@ background-color: transparent ;
 cursor: pointer ;
 `
 
+
+
 const Slider = () => {
+    const [slideIndex, setSlideIndex] = useState(0);
+    const handleClick = (direction)=>{
+
+        if (direction === "left") {
+            setSlideIndex(slideIndex > 0 ? slideIndex-1 : 2);
+        }
+        else {
+            setSlideIndex(slideIndex < 2 ? slideIndex+1 : 0);
+        }
+
+    };
   return (
     <Container>
-        <Arrow direction="left">
+        <Arrow direction="left" onClick={()=>handleClick("left")}>
         <ArrowLeftSharp/>
         </Arrow> 
-        <Wrapper>
-        <Slide>
+        <Wrapper slideIndex={slideIndex}>
+            {sliderItems.map((item)=>(
+        <Slide bg = {item.bg}>
     <ImageContainer>
-        <Image src= "https://static.zara.net/photos///contents/mkt/spots/aw22-north-woman-basics/subhome-xmedia-38//w/1879/IMAGE-landscape-fill-f5302ebb-2ddc-4218-81c2-eb0464c2d73f-default_0.jpg?ts=1663576361647" />
+        <Image src= {item.img} />
     </ImageContainer>
         <InfoContainer>
-    <Title>INSANE SALES</Title>
-        <Desc>GET 20% OFF FOR NEW ARRIVALS</Desc>
+    <Title>{item.title}</Title>
+        <Desc>{item.desc}</Desc>
     <Button>SHOP NOW</Button>
     </InfoContainer>
         </Slide>
-        <Slide>
-    <ImageContainer>
-        <Image src= "https://static.zara.net/photos///contents/mkt/spots/aw22-north-woman-basics/subhome-xmedia-38//w/1879/IMAGE-landscape-fill-f5302ebb-2ddc-4218-81c2-eb0464c2d73f-default_0.jpg?ts=1663576361647"/>
-    </ImageContainer>
-        <InfoContainer>
-    <Title>INSANE SALES</Title>
-        <Desc>GET 20% OFF FOR NEW ARRIVALS</Desc>
-    <Button>SHOP NOW</Button>
-    </InfoContainer>
-        </Slide>
-        <Slide>
-    <ImageContainer>
-        <Image src= "https://static.zara.net/photos///contents/mkt/spots/aw22-north-woman-basics/subhome-xmedia-38//w/1879/IMAGE-landscape-fill-f5302ebb-2ddc-4218-81c2-eb0464c2d73f-default_0.jpg?ts=1663576361647"/>
-    </ImageContainer>
-        <InfoContainer>
-    <Title>INSANE SALES</Title>
-        <Desc>GET 20% OFF FOR NEW ARRIVALS</Desc>
-    <Button>SHOP NOW</Button>
-    </InfoContainer>
-        </Slide>
+      ))}
         </Wrapper>
-        <Arrow direction="right">
+        <Arrow direction="right" onClick={()=>handleClick("right")}>
         <ArrowRightSharp/>
     </Arrow>
     </Container>
