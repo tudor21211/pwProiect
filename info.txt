@@ -1,0 +1,1 @@
+nu folosim css, ci folosim styled components
