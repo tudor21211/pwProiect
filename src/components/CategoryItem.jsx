@@ -13,6 +13,8 @@ const Image = styled.img`
   height: 120%;
   min-width: 450px;
   object-fit:cover;
+
+  
 `
 const Title = styled.h1`
 color: black;
@@ -28,6 +30,7 @@ align-items: center ;
 justify-content: center;
 width: 100%;
 height: 20% ;
+
 `
 const Button = styled.button`
   border : none;
@@ -35,6 +38,11 @@ const Button = styled.button`
   color:white;
   background-color: black;
   cursor:pointer;
+  transition:0.1s ease-in;
+&:hover{
+       background-color: #535756 ;
+       transform:scale(1.1);
+    }
   
 `
 

@@ -32,6 +32,11 @@ const Arrow = styled.div`
     cursor:pointer;
     opacity: 0.6 ;
     z-index:2;
+    transition:0.1s ease;
+&:hover{
+       background-color: grey ;
+       transform:scale(1.2);
+    }
 `;
 
 const Wrapper = styled.div`
@@ -81,6 +86,12 @@ padding: 10px;
 font-size: 20px;
 background-color: transparent ;
 cursor: pointer ;
+transition:0.1s ease;
+&:hover{
+       background-color: black ;
+       transform:scale(1.1);
+       color:white;
+    }
 `
 
 

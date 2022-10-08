@@ -66,36 +66,48 @@ export const popularProducts = [
 
 {
     id:1,
-    img:"https://static.zara.net/photos///2022/I/0/2/p/6318/408/400/2/w/750/6318408400_6_1_1.jpg?ts=1662109833191",
+    img:"https://github.com/tudor21211/pwProiect/blob/main/popularItems/1.jpg?raw=true",
 },
 
 {
     id:2,
-    img:"https://static.zara.net/photos///2022/V/0/2/p/6045/410/406/22/w/750/6045410406_6_1_1.jpg?ts=1652199889447",
+    img:"https://github.com/tudor21211/pwProiect/blob/main/popularItems/2.jpg?raw=true",
 
 },
 
 {
     id:3,
-    img:"https://static.zara.net/photos///2022/V/0/2/p/6045/410/406/22/w/750/6045410406_6_1_1.jpg?ts=1652199889447",
+    img:"https://static.zara.net/photos///2022/I/0/2/p/0840/320/407/2/w/563/0840320407_6_1_1.jpg?ts=1662048040783",
 
 },
 
 {
     id:4,
-    img:"https://static.zara.net/photos///2022/I/0/2/p/6917/336/800/2/w/750/6917336800_6_2_1.jpg?ts=1664358242448",
+    img:"https://github.com/tudor21211/pwProiect/blob/main/popularItems/4.jpg?raw=true",
 
 },
 
 {
     id:5,
-    img:"https://static.zara.net/photos///2022/I/0/2/p/8288/800/800/2/w/750/8288800800_6_1_1.jpg?ts=1664522648724",
+    img:"https://github.com/tudor21211/pwProiect/blob/main/popularItems/5.jpg?raw=true",
 
 },
 {
     id:6,
-    img:"https://static.zara.net/photos///2022/I/0/2/p/9065/484/410/2/w/750/9065484410_6_1_1.jpg?ts=1659702607089",
+    img:"https://static.zara.net/photos///2022/V/0/1/p/0962/349/630/2/w/958/0962349630_6_1_1.jpg?ts=1651765974081",
 
 },
+{
+    id:7,
+    img:"https://static.zara.net/photos///2022/I/0/2/p/0761/300/800/2/w/958/0761300800_6_1_1.jpg?ts=1657614272114",
+
+},
+{
+    id:8,
+    img:"https://github.com/tudor21211/pwProiect/blob/main/popularItems/6.jpg?raw=true",
+
+},
+
+
 
 ];
