@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 import React from 'react'
 const Container = styled.div`
-    height: 30px;
-    background-color: #a3bdbc;
+position:fixed; 
+width:100%;
+z-index:3;  
+padding-top:10px; 
+    height: 15px;
+    background-color:#95CEC5;
     color:white;
     display:flex;
     align-items: center;
@@ -10,6 +14,7 @@ const Container = styled.div`
     font-size: 15px;
     font-weight:500 ;
 `
+
 const Announcement = () => {
   return (
     <Container>

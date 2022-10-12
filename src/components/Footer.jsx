@@ -80,13 +80,13 @@ const Footer = () => {
         </Center>
         <Right>
             <TitleContact>Contact</TitleContact>
-            <ContactItems><LocationOn/>
+            <ContactItems><LocationOn style ={{marginRight:"10px"}}/>
                 Street Acad. Remus Radulet, Timisoara 16.
             </ContactItems>
-            <ContactItems><Phone/>
+            <ContactItems><Phone style ={{marginRight:"10px"}}/>
                 +40746431639
             </ContactItems>
-            <ContactItems><Mail/>
+            <ContactItems><Mail style ={{marginRight:"10px"}}/>
                 tudor.androne@student.upt.ro
             </ContactItems>
         </Right>

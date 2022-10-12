@@ -1,7 +1,7 @@
 import {ArrowLeftSharp,ArrowRightSharp } from '@material-ui/icons'
 import {sliderItems} from "../data"
 import React, {useState} from "react";
-
+import {mobile} from "../responsive"
 import styled from 'styled-components'
 
 
@@ -13,6 +13,7 @@ const Container = styled.div`
     background-color: white ;
     position: relative;
     overflow: hidden;
+    ${mobile({display:"none"})}
     
 `
 const Arrow = styled.div`
