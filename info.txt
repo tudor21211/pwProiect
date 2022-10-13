@@ -1,1 +1,8 @@
 nu folosim css, ci folosim styled components
+
+creating a rest api so we are using endpoints
+
+utilizam Postman pentru testare api. trimitem result-ul pe pagina;
+
+ne cream o Schema pentru fiecare categorie(Cart,order,product), pe baza schemelor o sa salvam produsele in database
+facem o functie asincrona pt register in care salvam datele de logare username email si parola. asteptam datele in savedUser
