@@ -6,3 +6,14 @@ utilizam Postman pentru testare api. trimitem result-ul pe pagina;
 
 ne cream o Schema pentru fiecare categorie(Cart,order,product), pe baza schemelor o sa salvam produsele in database
 facem o functie asincrona pt register in care salvam datele de logare username email si parola. asteptam datele in savedUser
+
+adaugam JWT json web token
+pt a sterge un user, verificam daca id din json web token coincide cu ce ii dam noi	
+
+coduri de eroare : 401 - not authenticated
+		   403 - invalid token				   
+		   501 - 
+		   500 - json error
+		   200 - succesfull http response
+
+encrypt parole cu CryptoJS
