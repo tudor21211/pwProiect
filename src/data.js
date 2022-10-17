@@ -31,31 +31,37 @@ export const categories = [
         id: 1,
         img: "https://static.zara.net/photos///2022/V/0/2/p/6045/410/406/22/w/750/6045410406_6_1_1.jpg?ts=1652199889447",
         title: "TROUSERS",
+        cat:"women"
     },
     {
         id: 2,
         img: "https://github.com/tudor21211/pwProiect/blob/main/categoriesIMG/boots1.jpg?raw=true",
         title: "BOOTS",
+        cat:"boots"
     },
     {
         id: 3,
         img: "https://github.com/tudor21211/pwProiect/blob/main/categoriesIMG/jacket1.jpg?raw=true",
         title: "JACKETS",
+        cat:"jackets"
     },
     {
         id: 4,
         img: "https://static.zara.net/photos///2022/I/0/2/p/0977/310/251/2/w/958/0977310251_6_1_1.jpg?ts=1657030335235",
         title: "T-SHIRTS",
+        cat:"tshirts"
     },
     {
         id: 5,
         img: "https://static.zara.net/photos///2022/I/0/2/p/1564/900/401/42/w/958/1564900401_6_1_1.jpg?ts=1664447573373",
         title: "SUITS",
+        cat:"suits"
     },
     {
         id: 6,
         img: "https://static.zara.net/photos///2022/I/0/1/p/4437/274/401/2/w/958/4437274401_6_1_1.jpg?ts=1662480445305",
         title: "SKIRTS",
+        cat:"skirts"
     },
 
 

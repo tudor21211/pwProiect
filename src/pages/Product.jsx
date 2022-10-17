@@ -5,6 +5,14 @@ import Announcement from '../components/Announcement'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import Newsletter from '../components/Newsletter'
+import Navbar2 from '../components/Navbar2'
+import Announcement2 from '../components/Announcement2'
+import {useLocation} from 'react-router';
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import {publicRequest} from "../requestMethods"
+
 const Container = styled.div`
 
 `
@@ -139,24 +147,54 @@ margin-bottom: 0.8em;
 
 
 const Product = () => {
+    const location = useLocation();
+    const id = (location.pathname.split("/")[2]);
+
+    const [product,setProduct] = useState({});
+    const [quantity,setQuantity] = useState(1);
+
+    useEffect(()=>
+   {
+    const getProduct = async () =>{
+      try{
+          const res = await publicRequest.get("/products/find/"+id);
+        setProduct(res.data);
+        }catch(err){
+
+      }
+    }
+    getProduct();
+   },[id]
+    )
+
+
+   const handleQuantity=(type) => {
+    if (type==="dec") {
+        setQuantity(quantity-1);
+    }
+    else {
+        setQuantity(quantity+1);
+    }
+   }
+
   return (
     <Container>
-       <Announcement/>
-       <Navbar/>
+       <Announcement2/>
+       <Navbar2/>
        <Wrapper>
                 <ImgContainer>
-                        <Image src="https://github.com/tudor21211/pwProiect/blob/main/popularItems/8.jpg?raw=true"/>
+                        <Image src={product.img}/>
                 </ImgContainer>
                 <InfoContainer>
                     <Title>
-                        Blue Jeans
+                        {product.title}
                     </Title>
                     <Desc>
-                    Five-pocket, high-waisted jeans in prewashed cotton thick denim with button vents. Straight leg model for a perfect '90s look.
+                    {product.desc}
                     </Desc>
                     <Composition>Composition: 100% cotton</Composition>
                     <Price>
-                        $50
+                        ${product.price}
                     </Price>
                     <FilterContainer>
                         
@@ -165,37 +203,30 @@ const Product = () => {
                                 Size
                             </FilterTitle>
                             <FilterSize>
-                                <FilterSizeOption>
-                                    XS
-                                </FilterSizeOption>
-                                <FilterSizeOption>
-                                    S
-                                </FilterSizeOption>
-                                <FilterSizeOption>
-                                    M
-                                </FilterSizeOption>
-                                <FilterSizeOption>
-                                    L
-                                </FilterSizeOption>
-                                <FilterSizeOption>
-                                    XL
-                                </FilterSizeOption>
+                                {product.size?.map(s=>(
+                    <FilterSizeOption key={s}>
+                                    {s}
+                    </FilterSizeOption>
+                                ))}
+                               
+        
                             </FilterSize>
                         </Filter>
                         <Filter>
                             <FilterTitle>
                                 Color
                             </FilterTitle>
-                            <FilterColor color="Black"/>
-                            <FilterColor color="Grey"/>
-                            <FilterColor color="Darkblue"/>
+                            {product.color?.map((c)=>(
+                                <FilterColor color={c} key={c}/>
+                            ))}
+                            
                         </Filter>
                     </FilterContainer>
                     <AddContainer>
                         <AmountContainer>
-                            <Remove/>
-                            <Amount>1</Amount>
-                            <AddCircle/>
+                            <Remove onClick={()=>handleQuantity("dec")}/>
+                            <Amount>{quantity}</Amount>
+                            <AddCircle onClick={()=>handleQuantity("inc")}/>
                         </AmountContainer>
                         <Button>Add to cart</Button>
                     </AddContainer>

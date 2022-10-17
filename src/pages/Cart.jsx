@@ -4,6 +4,8 @@ import React from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import Announcement from '../components/Announcement'
+import Navbar2 from '../components/Navbar2'
+import Announcement2 from '../components/Announcement2'
 const Container = styled.div`
 
 `
@@ -164,8 +166,8 @@ transition:0.1s ease;
 const Cart = () => {
   return (
     <Container>
-        <Announcement/>
-        <Navbar/>
+        <Announcement2/>
+        <Navbar2/>
         
        <Wrapper>
         <Titlu>YOUR CART</Titlu>

@@ -10,36 +10,32 @@ align-items: center;
 justify-content: center;
 `
 const Wrapper = styled.div`
+width:40%;
   padding:20px;
-  width:50%;
   background-color:rgba(255, 255, 255,0.92);
-
 `
 const Form = styled.form`
 display: flex;
-  font-size: 22px;
-  font-weight: 200 ;
   flex-wrap:wrap;
-  flex-direction: column ;
 `
 const Title = styled.h1`
 `
 const Input = styled.input`
   flex:1;
-  min-width: 50% ;
+  min-width: 40% ;
   margin:10px 10px 0px 0px;
   padding: 10px;
 `
 const Agreement = styled.span`
 display: flex;
-font-size: 14px ;
+font-size: 15px ;
 margin:20px 0px;
 `
 const Button = styled.button`
 display: flex;
-width: 10% ;
-padding: 16px;
-font-size: 10px;
+width: 11% ;
+padding: 15px;
+font-size: 15px;
 border:1px solid;
 background-color: transparent ;
 cursor: pointer ;
