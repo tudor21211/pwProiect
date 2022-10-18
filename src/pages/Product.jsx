@@ -12,6 +12,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import {publicRequest} from "../requestMethods"
+import { addProduct } from '../redux/cartRedux'
+import {useDispatch} from "react-redux"
 
 const Container = styled.div`
 
@@ -152,6 +154,9 @@ const Product = () => {
 
     const [product,setProduct] = useState({});
     const [quantity,setQuantity] = useState(1);
+    const [color,setColor] = useState("");
+    const [size,setSize] = useState("");
+    const dispatch = useDispatch();
 
     useEffect(()=>
    {
@@ -170,11 +175,17 @@ const Product = () => {
 
    const handleQuantity=(type) => {
     if (type==="dec") {
-        setQuantity(quantity-1);
+        quantity>1 && setQuantity(quantity-1);
     }
     else {
         setQuantity(quantity+1);
     }
+   }
+
+
+   const handleClick=()=>
+   {dispatch(
+    addProduct({...product, quantity, color, size}));
    }
 
   return (
@@ -202,7 +213,7 @@ const Product = () => {
                             <FilterTitle>
                                 Size
                             </FilterTitle>
-                            <FilterSize>
+                            <FilterSize onChange={(e)=>setSize(e.target.value)}>
                                 {product.size?.map(s=>(
                     <FilterSizeOption key={s}>
                                     {s}
@@ -228,7 +239,7 @@ const Product = () => {
                             <Amount>{quantity}</Amount>
                             <AddCircle onClick={()=>handleQuantity("inc")}/>
                         </AmountContainer>
-                        <Button>Add to cart</Button>
+                        <Button onClick={handleClick}>Add to cart</Button>
                     </AddContainer>
                 </InfoContainer>
        </Wrapper>

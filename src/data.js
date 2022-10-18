@@ -2,21 +2,21 @@ export const sliderItems = [
 
     {
         id:1,
-        img:"https://github.com/tudor21211/projectPW/blob/main/zara3.jpg?raw=true",
+        img:"https://github.com/tudor21211/pwProiect/blob/main/zara3.jpg?raw=true",
         title:"INSANE SALES",
         desc:"GET 20% OFF FOR NEW ARRIVALS",
         bg:"#F9F9F9",
     },
     {
         id:2,
-        img:"https://github.com/tudor21211/projectPW/blob/main/zara1.jpg?raw=true",
+        img:"https://github.com/tudor21211/pwProiect/blob/main/zara1.jpg?raw=true",
         title:"INSANE SALES",
         desc:"GET 20% OFF FOR NEW ARRIVALS",
         bg:"#F9F9F9",
     },
     {
         id:3,
-        img:"https://github.com/tudor21211/projectPW/blob/main/zara2.jpg?raw=true",
+        img:"https://github.com/tudor21211/pwProiect/blob/main/zara2.jpg?raw=true",
         title:"INSANE SALES",
         desc:"GET 20% OFF FOR NEW ARRIVALS",
         bg:"#F9F9F9",
@@ -31,7 +31,7 @@ export const categories = [
         id: 1,
         img: "https://static.zara.net/photos///2022/V/0/2/p/6045/410/406/22/w/750/6045410406_6_1_1.jpg?ts=1652199889447",
         title: "TROUSERS",
-        cat:"women"
+        cat:"trousers"
     },
     {
         id: 2,

@@ -2,6 +2,8 @@ import { Badge } from '@material-ui/core';
 import { Search, ShoppingCartSharp } from '@material-ui/icons';
 import React from 'react'
 import styled from 'styled-components'
+import {useSelector} from "react-redux"
+import {Link} from "react-router-dom"
 
 const Container = styled.div`
     height: 60px;
@@ -52,6 +54,8 @@ cursor:pointer;
 margin-left: 25px;
 `
 const Navbar = () => {
+    const quantity = useSelector(state=>state.cart.quantity);
+    console.log(quantity);
   return (
     <Container> 
         <Wrapper> 
@@ -62,13 +66,16 @@ const Navbar = () => {
                     <Search style={{color:"gray", fontSize:20}}/>
                 </SearchContainer>
             </Left>
-            <Center><Logo>TAP.</Logo></Center>
+            <Center><Link to="/" style={{textDecoration:'none',color:'black'}}><Logo>TAP.</Logo></Link></Center>
             <Right>
                 <MenuItem>REGISTER</MenuItem>
                 <MenuItem>LOGIN</MenuItem>
-                <MenuItem><Badge badgeContent = {4} color="primary">
-                        <ShoppingCartSharp/>
+                <Link to="/cart">
+                <MenuItem><Badge badgeContent = {quantity} color="primary">
+                
+                <ShoppingCartSharp/>
                     </Badge></MenuItem>
+                    </Link> 
                 </Right>
         </Wrapper>
        </Container>

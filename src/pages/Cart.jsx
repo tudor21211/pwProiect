@@ -6,7 +6,18 @@ import Navbar from '../components/Navbar'
 import Announcement from '../components/Announcement'
 import Navbar2 from '../components/Navbar2'
 import Announcement2 from '../components/Announcement2'
+import { useSelector } from 'react-redux'
+import { useState } from 'react'
+import StripeCheckout from 'react-stripe-checkout'
+import { useEffect } from 'react'
+import {userRequest} from "../requestMethods"
+import {useNavigate} from 'react-router'
+
+const KEY = process.env.REACT_APP_STRIPE;
+
+
 const Container = styled.div`
+
 
 `
 
@@ -93,9 +104,10 @@ const ProductColor = styled.div`
 width: 20px;
 height:20px ;
 border-radius:50% ;
-background-color:${props=>props.color};
+background-color: ${(props) => props.color};
 `
 const ProductSize = styled.span`
+color:black;
 `
 const PriceDetail = styled.div`
 flex:1;
@@ -164,6 +176,31 @@ transition:0.1s ease;
 
 
 const Cart = () => {
+    const cart = useSelector(state=>state.cart)
+    
+const [stripeToken,setStripeToken] = useState(null)
+const history = useNavigate();
+
+const onToken = (token) => {
+    setStripeToken(token);
+}
+
+useEffect(()=>{
+    const makeRequest = async() =>{
+        try{
+            const res = await userRequest.post("/checkout/payment",{
+            tokenId: stripeToken.id,
+            amount:500,
+        });
+
+            history("/success",{data:res.data});
+        }catch{}
+    };
+    stripeToken && makeRequest();
+},[stripeToken,cart.total,history]);
+
+
+
   return (
     <Container>
         <Announcement2/>
@@ -180,60 +217,43 @@ const Cart = () => {
         <TopButton>CHECKOUT</TopButton>
         </Top>
         <Bottom>
-            <Info><Product>
-                        <ProductDetails>
-                                <Image src="https://lp2.hm.com/hmgoepprod?set=source[/da/24/da241e515801f9d7628c754b31bb4be8145a3fda.jpg],origin[dam],category[men_cardigansjumpers_jumpers],type[DESCRIPTIVESTILLLIFE],res[s],hmver[2]&call=url[file:/product/main]"/>
-                        <Detail>
-                            <ProductName>
-                                <b>Product: </b>Slim Fit jumper
-                            </ProductName>
-                            <ProductId> 
-                                <b>ID:</b> 83271320
-                            </ProductId>
-                            <ProductColor color="black"/>
-                            <ProductSize><b>Size:</b> S </ProductSize>
-                        </Detail>
-                        </ProductDetails>
-                        <PriceDetail>
-                           <ProductAmountContainer>
-                            <Add/>
-                            <ProductAmount>2</ProductAmount>
-                            <Remove/>
-                           </ProductAmountContainer>
-                           <ProductPrice>$59.99</ProductPrice>
-                        </PriceDetail>
-                    </Product>
-                    <Hr/>
+            <Info>
+                {cart.products.map(product=>(
                     <Product>
                         <ProductDetails>
-                                <Image src="https://lp2.hm.com/hmgoepprod?set=source[/de/25/de25b345f78e8c44bf6af233755f1870a8fbef7c.jpg],origin[dam],category[men_cardigansjumpers_jumpers],type[DESCRIPTIVESTILLLIFE],res[s],hmver[2]&call=url[file:/product/main]"/>
+                                <Image src={product.img} />
                         <Detail>
                             <ProductName>
-                                <b>Product: </b>Slim Fit jumper
+                                <b>Product: </b>{product.title}
                             </ProductName>
                             <ProductId> 
-                                <b>ID:</b> 83271321
+                                <b>ID:</b> {product._id}
                             </ProductId>
-                            <ProductColor color="darkgreen"/>
-                            <ProductSize><b>Size:</b> M </ProductSize>
+                            {/* <ProductColor color={product.color} /> */}
+                            <ProductSize>
+                                <b>Size:</b> M
+                            </ProductSize>
                         </Detail>
                         </ProductDetails>
                         <PriceDetail>
                            <ProductAmountContainer>
                             <Add/>
-                            <ProductAmount>2</ProductAmount>
+                            <ProductAmount>{product.quantity}</ProductAmount>
                             <Remove/>
                            </ProductAmountContainer>
-                           <ProductPrice>$59.99</ProductPrice>
+                           <ProductPrice>${(product.price*product.quantity).toFixed(2)}</ProductPrice>
                         </PriceDetail>
                     </Product>
+                    ))}
+                    <Hr/>
+             
             </Info>
             <Summary>
                 <SummaryTitle>ORDER SUMMARY</SummaryTitle>
            
                 <SummaryItem>
                         <SummaryItemText>Subtotal: </SummaryItemText>
-                        <SummaryItemPrice>119.98$</SummaryItemPrice> 
+                        <SummaryItemPrice>${cart.total}</SummaryItemPrice> 
                 </SummaryItem>
                 <SummaryItem>
                         <SummaryItemText>Delivery fees: </SummaryItemText>
@@ -245,9 +265,20 @@ const Cart = () => {
                 </SummaryItem>
                 <SummaryItem type="total">
                         <SummaryItemText >Total: </SummaryItemText>
-                        <SummaryItemPrice>119.98$</SummaryItemPrice> 
+                        <SummaryItemPrice>${cart.total}</SummaryItemPrice> 
                 </SummaryItem>
+                <StripeCheckout
+                name = "TAP"
+                image = "https://avatars.githubusercontent.com/u/73787063?v=4"
+                billingAddress
+                shippingAddress
+                description={`Your total is $${cart.total}`}
+                amount = {cart.total*100}
+                token = {onToken}
+                stripeKey = {"pk_test_51Lt98QLEVBTAGzNr1glATqQN4VmEbLMLD1CQ4HUtTU5eNScwQ8K6yQ0z3uPbWQTO0kBMbUmRYywQjvE0CblJ8hia00KMN0Wo2B"}
+                >
                 <SummaryButton>CHECKOUT NOW</SummaryButton>
+                </StripeCheckout>
             </Summary>
         </Bottom>
         </Wrapper>
