@@ -1,5 +1,9 @@
 import React from 'react'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { loginFailure } from '../redux/userRedux'
+import {login} from "../redux/apiCalls"
 
 const Container = styled.div`
 width: 100vw;
@@ -31,6 +35,11 @@ const Input = styled.input`
   margin:10px 10px 0px 0px;
   padding: 10px;
 `
+
+const Error = styled.span`
+  color:red;
+`
+
 const Button = styled.button`
 width: 15% ;
 padding: 12px;
@@ -46,6 +55,10 @@ transition:0.1s ease;
        transform:scale(1.05);
        color:white;
     }
+&::disabled{
+  color:green;
+  cursor:not-allowed;
+}
 `
 
 const Link = styled.a`
@@ -58,6 +71,15 @@ const Link = styled.a`
 
 
 const Login = () => {
+  const [username,setUsername] = useState("");
+  const [password,setPassword] = useState("");
+  const dispatch = useDispatch();
+  const {isFetching, error} = useSelector((state)=>state.user);
+  
+  const handleClick = (e) =>{
+    e.preventDefault()
+    login(dispatch,{username,password});
+  }
   return (
     <Container>
       <Wrapper>
@@ -65,9 +87,12 @@ const Login = () => {
           SIGN IN
         </Title>
         <Form>
-            <Input placeholder="username"/>
-            <Input placeholder="password"/>
-            <Button>LOG IN</Button>
+            <Input placeholder="username" 
+            onChange={(e)=>setUsername(e.target.value)}/>
+            <Input placeholder="password" type="password"
+            onChange={(e)=>setPassword(e.target.value)}/>
+            <Button onClick={handleClick} disabled={isFetching}>LOG IN</Button>
+            {error && <Error>Something went wrong...</Error>}
             <Link>FORGOT YOUR PASSWORD?</Link>
             <Link>CREATE A NEW ACCOUNT</Link>
         </Form>

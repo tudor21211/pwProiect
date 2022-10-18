@@ -177,7 +177,6 @@ transition:0.1s ease;
 
 const Cart = () => {
     const cart = useSelector(state=>state.cart)
-    
 const [stripeToken,setStripeToken] = useState(null)
 const history = useNavigate();
 
@@ -185,21 +184,20 @@ const onToken = (token) => {
     setStripeToken(token);
 }
 
+
 useEffect(()=>{
     const makeRequest = async() =>{
         try{
             const res = await userRequest.post("/checkout/payment",{
             tokenId: stripeToken.id,
-            amount:500,
+            amount:cart.total*100,
         });
-
+            
             history("/success",{data:res.data});
         }catch{}
     };
     stripeToken && makeRequest();
 },[stripeToken,cart.total,history]);
-
-
 
   return (
     <Container>
@@ -229,9 +227,9 @@ useEffect(()=>{
                             <ProductId> 
                                 <b>ID:</b> {product._id}
                             </ProductId>
-                            {/* <ProductColor color={product.color} /> */}
+                            <ProductColor color={product.color} /> 
                             <ProductSize>
-                                <b>Size:</b> M
+                                <b>Size:</b> {product.size}
                             </ProductSize>
                         </Detail>
                         </ProductDetails>

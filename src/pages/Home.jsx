@@ -8,6 +8,8 @@ import PopularAnnouncement from '../components/PopularAnnouncement'
 import Product from '../components/Product'
 import Products from '../components/Products'
 import Slider from '../components/Slider'
+import Announcement2 from '../components/Announcement2'
+import Navbar2 from '../components/Navbar2'
 
 
 
@@ -15,8 +17,8 @@ const Home = () => {
   return (
     <div >
 
-      <Announcement/>
-        <Navbar/>
+      <Announcement2/>
+        <Navbar2/>
         <Slider/>
         <Categories/>
         <PopularAnnouncement/>
