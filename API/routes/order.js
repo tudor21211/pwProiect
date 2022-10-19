@@ -12,7 +12,7 @@ router.post("/", verifyToken, async(req,res)=>
         const newOrder = new Order (req.body);
         try{
             const savedOrder = await newOrder.save();
-            res.status(200).json(savedOrder);
+            res.status(200).json(savedOrder);return;
         }catch(err) {
             res.status(500).json(err);
         }
@@ -40,7 +40,7 @@ router.delete("/:id", verifyTokenAndAdmin ,async (req,res)=>
     try{
 
             await Order.findByIdAndDelete(req.params.id);
-            res.status(200).json("Order deteleted succesfully")
+            res.status(200).json("Order deleted succesfully")
 
     }catch(err){
         res.status(500).json(err);
@@ -86,6 +86,8 @@ router.get("/", verifyTokenAndAdmin, async(req,res)=>{
 
 router.get("/income",verifyTokenAndAdmin, async(req,res)=>{
 
+    const productId = req.query.pid;
+
     const date = new Date();
     const lastMonth = new Date(date.setMonth(date.getMonth()-1));
     const prevMonth = new Date(new Date().setMonth(lastMonth.getMonth()-1));
@@ -94,7 +96,9 @@ router.get("/income",verifyTokenAndAdmin, async(req,res)=>{
 
         const income = await Order.aggregate([
             {
-                $match:{createdAt:{$gte:prevMonth}}
+                $match:{createdAt:{$gte:prevMonth}, ...Order(productId && {
+                    products:{$elemMatch:{productId}},
+                })}
             },{
             $project: {
             month:{$month:"$createdAt"},

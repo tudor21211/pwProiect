@@ -68,8 +68,10 @@ const Navbar = () => {
             </Left>
             <Center><Link to="/" style={{textDecoration:'none',color:'black'}}><Logo>TAP.</Logo></Link></Center>
             <Right>
-                <MenuItem>REGISTER</MenuItem>
-                <MenuItem>LOGIN</MenuItem>
+            <Link to="/" style={{textDecoration:'none',color:'black'}} ><MenuItem>logout</MenuItem></Link>
+            <Link to="/register"  style={{textDecoration:'none',color:'black'}}> <MenuItem>REGISTER</MenuItem></Link>
+            <Link to="/login"  style={{textDecoration:'none',color:'black'}}> <MenuItem>LOGIN</MenuItem></Link>
+
                 <Link to="/cart">
                 <MenuItem><Badge badgeContent = {quantity} color="primary">
                 
